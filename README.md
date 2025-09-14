@@ -144,6 +144,6 @@ Feedstock Maintainers
 =====================
 
 * [@bgruening](https://github.com/bgruening/)
-* [@conda-forge/r](https://github.com/conda-forge/r/)
+* [@conda-forge/r](https://github.com/orgs/conda-forge/teams/r/)
 * [@johanneskoester](https://github.com/johanneskoester/)
 
