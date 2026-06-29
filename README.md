@@ -3,11 +3,11 @@ About r-functional-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-functional-feedstock/blob/main/LICENSE.txt)
 
-Home: https://CRAN.R-project.org/package=functional
+Home: https://github.com/klutometis/R-functional
 
-Package license: GPL-2.0-or-later
+Package license: GPL-2.0-only
 
-Summary: Curry, Compose, and other higher-order functions
+Summary: Provides a small collection of higher-order functions for functional-style programming in R, including 'Curry' (partial application), 'CurryL' (lazy partial application), 'Compose' (function composition, including a multi-argument variant), 'Identity', 'Negate' and 'Swap'.
 
 Current build status
 ====================
@@ -144,7 +144,5 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@bgruening](https://github.com/bgruening/)
 * [@conda-forge/r](https://github.com/orgs/conda-forge/teams/r/)
-* [@johanneskoester](https://github.com/johanneskoester/)
 
