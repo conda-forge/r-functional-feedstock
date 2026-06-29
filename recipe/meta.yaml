@@ -1,48 +1,54 @@
 {% set version = "0.7" %}
-
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-functional
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
-  fn: functional_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/functional_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/functional/functional_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/functional_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/functional/functional_{{ version }}.tar.gz
   sha256: f87d9d0a8a0ab1052a3629f54eeaaeef60de70482cd9e17f215cc1387019d104
 
 build:
-  noarch: generic
   number: 0
-
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
+    - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+  host:
     - r-base
-
+    - r-lisp >=0.2
   run:
     - r-base
+    - r-lisp >=0.2
 
 test:
   commands:
-    - $R -e "library('functional')"  # [not win]
+    - $R -e "library('functional')"           # [not win]
     - "\"%R%\" -e \"library('functional')\""  # [win]
 
 about:
-  home: https://CRAN.R-project.org/package=functional
-  license: GPL-2.0-or-later
-  summary: Curry, Compose, and other higher-order functions
-  license_family: GPL3
-
+  home: https://github.com/klutometis/R-functional
+  license: GPL-2.0-only
+  summary: Provides a small collection of higher-order functions for functional-style programming
+    in R, including 'Curry' (partial application), 'CurryL' (lazy partial application),
+    'Compose' (function composition, including a multi-argument variant), 'Identity',
+    'Negate' and 'Swap'.
+  license_family: GPL2
   license_file:
-    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
